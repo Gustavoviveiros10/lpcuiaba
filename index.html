@@ -211,32 +211,6 @@
     font-size: 1.02rem;
   }
 
-  /* ---------------- VIDEO ---------------- */
-  .video-section { background: var(--bg-soft); }
-  .video-section h2 {
-    font-family: var(--display);
-    font-size: clamp(1.8rem, 3.4vw, 2.6rem);
-    text-align: center;
-    line-height: 1.2;
-    margin-bottom: 50px;
-    text-transform: uppercase;
-  }
-  .video-wrap {
-    max-width: 920px;
-    margin: 0 auto;
-    aspect-ratio: 16/9;
-    background: #000;
-    overflow: hidden;
-    box-shadow: 0 30px 80px rgba(221,187,105,0.12);
-    border-radius: 8px;
-  }
-  .video-wrap video, .video-wrap iframe {
-    width: 100%; height: 100%;
-    border: 0;
-    object-fit: cover;
-  }
-  .video-cta { text-align: center; margin-top: 50px; }
-
   /* ---------------- FAMOSOS (efeito mdw-card-portfolio do original) ---------------- */
   .famosos { background: var(--bg); }
   .famosos > h2 {
@@ -661,8 +635,8 @@
   /* mapa */
   .map-wrap {
     width: 100%;
-    height: 360px;
-    margin-top: 60px;
+    min-height: 480px;
+    height: 100%;
     border: 1px solid var(--line);
     overflow: hidden;
     border-radius: 6px;
@@ -727,7 +701,9 @@
     clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
   }
 
-  /* ---------------- MOBILE ---------------- */
+  /* ============================================================
+     MOBILE — TABLET (até 1024px)
+     ============================================================ */
   @media (max-width: 1024px) {
     .mdw-card-portfolio {
       --image-height: 350px;
@@ -744,35 +720,144 @@
       box-shadow: 0 20px 40px rgba(0,0,0,0.4);
     }
     .mdw-img-right { display: inline-block; }
+    /* Carrosséis menores em tablet */
+    .ambiente .carousel-infinite-track > div { flex: 0 0 360px; }
   }
+
+  /* ============================================================
+     MOBILE — CELULAR (até 920px)
+     ============================================================ */
   @media (max-width: 920px) {
-    .logo-img { height: 52px; }
-    .hero-logo { height: 100px; margin-bottom: 22px; }
-    /* No mobile, esconder peças do meio do mosaico pra ficar mais limpo */
-    .hero-tile:nth-child(3),
-    .hero-tile:nth-child(7),
-    .hero-tile:nth-child(8) { display: none; }
-    .hero-tile { opacity: 0.18; }
-    section { padding: 70px 0; }
-    .detalhe-grid { grid-template-columns: repeat(2, 1fr); }
-    .doutor-grid { grid-template-columns: 1fr; gap: 40px; }
-    .doutor-img { max-width: 380px; margin: 0 auto; }
-    .testi-grid { grid-template-columns: 1fr; }
-    .contato-grid { grid-template-columns: 1fr; gap: 40px; }
-    .form-box { padding: 28px; }
-    .carousel-infinite-track > div { flex: 0 0 220px; }
-    .ambiente .carousel-infinite-track > div { flex: 0 0 280px; }
+    /* Espaçamento global */
+    section { padding: 60px 0; }
+    .container { padding: 0 20px; }
+
+    /* HERO — Primeira Dobra */
+    .hero { min-height: auto; padding: 70px 0 60px; }
+    .hero-inner { padding: 40px 20px; }
+    .hero-text { max-width: 100%; }
+    .hero-logo { height: 88px; margin-bottom: 18px; }
+    .hero-h1, .hero-h2 { font-size: clamp(1.1rem, 4.5vw, 1.5rem); }
+    .hero-h1 { margin-bottom: 10px; }
+    .hero-h2 { margin: 12px 0 22px; }
+    .hero-clinica {
+      font-size: clamp(1.7rem, 7.2vw, 2.6rem);
+      white-space: normal;       /* permite quebrar em 2 linhas se necessário */
+      line-height: 1.05;
+    }
+    .hero-sub { font-size: 0.92rem; max-width: 100%; padding: 0 8px; margin-bottom: 28px; }
+    /* Mosaico de fotos de sorriso: tiles menores e mais sutis */
+    .hero-tile { opacity: 0.16; }
+    .hero-tile:nth-child(3) { width: 36% !important; }
+    .hero-tile:nth-child(1), .hero-tile:nth-child(2) { width: 38% !important; }
+    /* Overlay um pouco mais escuro pro texto ficar mais legível */
+    .hero-overlay {
+      background:
+        radial-gradient(ellipse 90% 80% at center, rgba(10,10,10,0.85) 0%, rgba(10,10,10,0.65) 60%, rgba(10,10,10,0.35) 100%),
+        linear-gradient(180deg, rgba(10,10,10,0.5) 0%, rgba(10,10,10,0) 25%, rgba(10,10,10,0) 70%, rgba(10,10,10,0.5) 100%);
+    }
+
+    /* Botões */
+    .btn-red { padding: 14px 32px; font-size: 0.88rem; }
+
+    /* FAMOSOS — mdw-card-portfolio */
+    .mdw-card-portfolio { padding: 50px 18px; }
     .mdw-img-left, .mdw-img-right {
       display: block;
-      margin: 20px auto 0;
+      margin: 18px auto 0;
     }
+
+    /* DETALHES — grid 2 colunas em vez de 4 */
+    .detalhe-grid { grid-template-columns: repeat(2, 1fr); gap: 14px; }
+
+    /* SEÇÃO TITLE/SUB no geral */
+    .section-title { font-size: clamp(1.5rem, 5vw, 2rem); padding: 0 8px; }
+    .section-sub { font-size: 0.94rem; margin-bottom: 38px; padding: 0 8px; }
+
+    /* CARROSSÉIS */
+    .carousel-infinite { padding: 20px 0; }
+    .carousel-infinite-track { gap: 14px; animation-duration: 32s; }
+    .carousel-infinite-track > div { flex: 0 0 200px; }
+    .ambiente .carousel-infinite-track > div { flex: 0 0 280px; }
+
+    /* IMPLANTES texto */
+    .implantes h2 { font-size: 1.4rem; padding: 0 8px; }
+    .implantes-text { font-size: 0.92rem; padding: 0 10px; line-height: 1.65; }
+
+    /* DR. MARCOS */
+    .doutor-grid { grid-template-columns: 1fr; gap: 36px; }
+    .doutor-img { max-width: 320px; margin: 0 auto; }
+    .doutor-text h2 { font-size: 1.7rem; text-align: center; }
+    .doutor-text .doutor-cro { text-align: center; display: block; }
+    .doutor-text p { font-size: 0.94rem; line-height: 1.7; }
+
+    /* DEPOIMENTOS */
+    .testi-header h3 { font-size: 1.5rem !important; padding: 0 8px; }
+    .testi-grid { grid-template-columns: 1fr; gap: 18px; }
+    .testi-card { padding: 24px; }
+    .testi-excelente { font-size: 1.3rem; }
+    .testi-google-logo svg { height: 26px; }
+    .testi-stars-row { font-size: 1.4rem; letter-spacing: 4px; }
+
+    /* CONTATO */
+    .contato-grid { grid-template-columns: 1fr; gap: 38px; }
+    .info-card { padding: 18px; }
+    .info-card h4 { font-size: 0.95rem; }
+    .info-card p, .info-card a { font-size: 0.88rem; }
+    .form-box { padding: 26px 22px; }
+    .form-box h3 { font-size: 1.4rem; }
+    .map-wrap { min-height: 320px; aspect-ratio: 16/12; }
+
+    /* FOOTER */
+    footer { padding: 60px 0 80px; }
+    footer .logo-img { height: 80px; }
+    footer .footer-text { font-size: 0.85rem; padding: 0 16px; }
+
+    /* WHATSAPP FLOAT */
+    .whats-float {
+      width: 54px; height: 54px;
+      bottom: 18px; right: 18px;
+    }
+    .whats-float svg { width: 28px; height: 28px; }
   }
+
+  /* ============================================================
+     MOBILE — CELULAR PEQUENO (até 560px)
+     ============================================================ */
   @media (max-width: 560px) {
-    .mdw-card-portfolio { padding: 50px 16px; }
+    section { padding: 50px 0; }
+
+    /* HERO */
+    .hero-logo { height: 72px; margin-bottom: 14px; }
+    .hero-h1, .hero-h2 { font-size: 1.05rem; }
+    .hero-clinica { font-size: 1.85rem; }
+    .hero-sub { font-size: 0.88rem; }
+
+    /* DETALHES */
+    .detalhe-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
+
+    /* CARROSSÉIS - tiles ainda menores */
+    .carousel-infinite-track > div { flex: 0 0 170px; }
+    .ambiente .carousel-infinite-track > div { flex: 0 0 240px; }
+
+    /* mdw-card-portfolio (famosos antes/depois) */
+    .mdw-card-portfolio { padding: 40px 16px; }
     .mdw-img-left, .mdw-img-right {
-      width: 80%; max-width: 280px;
+      width: 78%; max-width: 240px;
       height: auto; aspect-ratio: 3/4;
     }
+
+    /* DEPOIMENTOS */
+    .testi-card { padding: 20px; }
+    .testi-card .text { font-size: 0.9rem; }
+
+    /* CONTATO */
+    .form-box { padding: 22px 18px; }
+    .form-box input, .form-box textarea { font-size: 0.92rem; padding: 12px 14px; }
+
+    /* TÍTULOS de seção */
+    .section-title { font-size: 1.4rem; }
+    .implantes h2 { font-size: 1.25rem; line-height: 1.3; }
   }
 </style>
 </head>
@@ -792,21 +877,6 @@
       <h2 class="hero-h2 reveal">A Arte de Iluminar Sorrisos</h2>
       <p class="hero-sub reveal">Referência Mundial em Lentes de Contato Dental e Implantes Dentários</p>
       <a href="https://api.whatsapp.com/send?phone=556598166893&text=Ol%C3%A1%20vim%20do%20site%20e%20desejo%20agendar%20uma%20consulta." class="btn-red reveal">Agendar Consulta</a>
-    </div>
-  </div>
-</section>
-
-<!-- VIDEO -->
-<section class="video-section">
-  <div class="container">
-    <h2 class="reveal"><span class="mdw-gradient">Assista ao vídeo e confira o depoimento de um paciente da clínica</span></h2>
-    <div class="video-wrap reveal">
-      <video controls poster="https://cuiaba.clinicaviotto.com.br/wp-content/uploads/2025/12/viotto_depois_2-885x1024.webp" preload="metadata">
-        <source src="https://cuiaba.clinicaviotto.com.br/wp-content/uploads/2025/09/Video-Viotto.mp4" type="video/mp4">
-      </video>
-    </div>
-    <div class="video-cta reveal">
-      <a href="https://api.whatsapp.com/send?phone=556598166893&text=Ol%C3%A1%20vim%20do%20site%20e%20desejo%20agendar%20uma%20consulta." class="btn-red">Agendar Consulta</a>
     </div>
   </div>
 </section>
@@ -1055,36 +1125,9 @@
         </div>
       </div>
 
-      <div class="form-box reveal">
-        <h5>Preencha e nosso atendente entrará em contato</h5>
-        <form onsubmit="enviarWhats(event)">
-          <div class="form-group">
-            <input type="text" name="nome" placeholder="Seu nome completo" required>
-          </div>
-          <div class="form-group">
-            <input type="tel" name="telefone" placeholder="Seu telefone com DDD" required>
-          </div>
-          <div class="form-group">
-            <select name="servico" required>
-              <option value="">Qual procedimento te interessa?</option>
-              <option value="Lentes de Contato Dental">Lentes de Contato Dental</option>
-              <option value="Facetas Dentárias">Facetas Dentárias</option>
-              <option value="Implantes Dentários">Implantes Dentários</option>
-              <option value="Cirurgias Odontológicas">Cirurgias Odontológicas</option>
-              <option value="Ortodontia">Ortodontia</option>
-              <option value="Outro">Outro</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <textarea name="mensagem" placeholder="Conte-nos um pouco sobre o que você procura..."></textarea>
-          </div>
-          <button type="submit" class="btn-red">Enviar Mensagem</button>
-        </form>
+      <div class="map-wrap reveal">
+        <iframe src="https://www.google.com/maps?q=Av.+Miguel+Sutil,+2625,+Jardim+Primavera,+Cuiab%C3%A1+-+MT&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
       </div>
-    </div>
-
-    <div class="map-wrap reveal">
-      <iframe src="https://www.google.com/maps?q=Av.+Miguel+Sutil,+2625,+Jardim+Primavera,+Cuiab%C3%A1+-+MT&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
     </div>
   </div>
 </section>
